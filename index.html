@@ -1,0 +1,1483 @@
+<!doctype html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Rey Waterson — Web &amp; Product Designer</title>
+    <!-- Google Fonts for Editorial Aesthetic -->
+    <link href="https://fonts.googleapis.com" rel="preconnect" />
+    <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&amp;family=Italiana&amp;family=La+Belle+Aurore&amp;family=Plus+Jakarta+Sans:wght@300;400;500;600;700&amp;display=swap"
+      rel="stylesheet"
+    />
+    <!-- Tailwind CSS v3 with Plugins -->
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              brand: {
+                cream: "#f6f3eb",
+                "cream-dark": "#eee9dc",
+                olive: "#535f4f",
+                "olive-dark": "#444f41",
+                "olive-deep": "#374134",
+                gold: "#b89b72",
+                "gold-light": "#cbb692",
+                dark: "#212420",
+                muted: "#6f736c",
+                border: "#dfdacd",
+              },
+            },
+            fontFamily: {
+              serif: ['"Cormorant Garamond"', "serif"],
+              display: ['"Italiana"', '"Cormorant Garamond"', "serif"],
+              script: ['"La Belle Aurore"', "cursive"],
+              sans: ['"Plus Jakarta Sans"', "sans-serif"],
+            },
+          },
+        },
+      };
+    </script>
+    <!-- BEGIN: Custom Typography Styles -->
+    <style data-purpose="typography">
+      .font-cormorant {
+        font-family: "Cormorant Garamond", serif;
+      }
+      .font-script {
+        font-family: "La Belle Aurore", cursive;
+      }
+      .letter-spaced-wide {
+        letter-spacing: 0.22em;
+      }
+      .letter-spaced-tight {
+        letter-spacing: -0.03em;
+      }
+    </style>
+    <!-- END: Custom Typography Styles -->
+    <!-- BEGIN: Visual Effects & Arches -->
+    <style data-purpose="visual-accents">
+      .arch-frame {
+        border-top-left-radius: 9999px;
+        border-top-right-radius: 9999px;
+      }
+      .editorial-border {
+        border-color: rgba(184, 155, 114, 0.4);
+      }
+      .subtle-shadow {
+        box-shadow: 0 14px 40px -15px rgba(50, 58, 45, 0.12);
+      }
+
+      /* Smooth slider & card transitions */
+      #projects-slider {
+        scroll-snap-type: x mandatory;
+        scroll-padding-left: 2rem;
+        scroll-padding-right: 2rem;
+        -webkit-overflow-scrolling: touch;
+      }
+      @media (min-width: 768px) {
+        #projects-slider {
+          scroll-padding-left: 4rem;
+          scroll-padding-right: 4rem;
+        }
+      }
+      .project-card {
+        scroll-snap-align: start;
+        scroll-snap-stop: always;
+        transition:
+          transform 550ms cubic-bezier(0.16, 1, 0.3, 1),
+          opacity 550ms cubic-bezier(0.16, 1, 0.3, 1),
+          box-shadow 450ms cubic-bezier(0.25, 1, 0.5, 1),
+          border-color 450ms cubic-bezier(0.25, 1, 0.5, 1);
+        will-change: transform, opacity;
+        cursor: pointer;
+      }
+      .project-card:hover {
+        transform: translateY(-6px);
+        box-shadow: 0 20px 35px -10px rgba(50, 58, 45, 0.18);
+      }
+      .project-card .mockup-content {
+        transition: transform 500ms cubic-bezier(0.25, 1, 0.5, 1);
+      }
+      .project-card:hover .mockup-content {
+        transform: scale(1.03);
+      }
+      .project-card .arrow-badge {
+        transition:
+          background-color 400ms cubic-bezier(0.25, 1, 0.5, 1),
+          color 400ms cubic-bezier(0.25, 1, 0.5, 1),
+          border-color 400ms cubic-bezier(0.25, 1, 0.5, 1),
+          transform 400ms cubic-bezier(0.25, 1, 0.5, 1);
+      }
+      .project-card:hover .arrow-badge {
+        transform: scale(1.08);
+      }
+      .project-card:hover .arrow-icon {
+        transform: translate(2px, -2px);
+      }
+      .arrow-icon {
+        transition: transform 400ms cubic-bezier(0.25, 1, 0.5, 1);
+        display: inline-block;
+      }
+
+      /* Modal Animation */
+      .modal-backdrop {
+        transition: opacity 350ms cubic-bezier(0.16, 1, 0.3, 1);
+      }
+      .modal-panel {
+        transition:
+          transform 380ms cubic-bezier(0.16, 1, 0.3, 1),
+          opacity 380ms cubic-bezier(0.16, 1, 0.3, 1);
+      }
+      .modal-hidden .modal-backdrop {
+        opacity: 0;
+        pointer-events: none;
+      }
+      .modal-hidden .modal-panel {
+        opacity: 0;
+        transform: scale(0.95) translateY(12px);
+        pointer-events: none;
+      }
+    </style>
+    <!-- END: Visual Effects & Arches -->
+  </head>
+  <body
+    class="bg-[#f6f3ec] text-[#2c3029] font-sans antialiased selection:bg-[#535f4f] selection:text-[#f6f3ec]"
+  >
+    <!-- Outer Canvas Wrapper -->
+    <div
+      class="max-w-[1280px] mx-auto bg-[#f6f3ec] min-h-screen relative overflow-hidden border-x border-[#ebe5d8]/80 shadow-2xl"
+    >
+      <!-- BEGIN: MainHeader -->
+      <header
+        class="w-full pt-8 pb-4 px-8 md:px-16 flex items-center justify-between"
+      >
+        <!-- Monogram Logo -->
+        <a
+          class="font-serif text-4xl font-normal text-[#9b7b4f] tracking-tight hover:opacity-80 transition-opacity"
+          href="#"
+          >R</a
+        >
+        <!-- Desktop Navigation Menu -->
+        <nav
+          class="hidden md:flex items-center space-x-10 text-[11px] font-medium tracking-[0.2em] text-[#555a50]"
+        >
+          <a class="hover:text-black transition-colors uppercase" href="#work"
+            >WORK</a
+          >
+          <a class="hover:text-black transition-colors uppercase" href="#about"
+            >ABOUT</a
+          >
+          <a
+            class="hover:text-black transition-colors uppercase"
+            href="#process"
+            >PROCESS</a
+          >
+          <a
+            class="hover:text-black transition-colors uppercase"
+            href="#expertise"
+            >EXPERTISE</a
+          >
+          <a
+            class="hover:text-black transition-colors uppercase"
+            href="#contact"
+            >CONTACT</a
+          >
+        </nav>
+        <!-- Right Accent Star -->
+        <div class="text-[#c1a274] flex items-center justify-end w-8">
+          <svg
+            class="w-4 h-4 fill-current transform rotate-12"
+            viewbox="0 0 24 24"
+          >
+            <path
+              d="M12 0L14.5 9.5L24 12L14.5 14.5L12 24L9.5 14.5L0 12L9.5 9.5L12 0Z"
+            ></path>
+          </svg>
+        </div>
+      </header>
+      <!-- END: MainHeader -->
+      <!-- BEGIN: HeroSection -->
+      <section
+        class="relative px-8 md:px-16 pt-6 pb-12 lg:pb-16 grid grid-cols-1 lg:grid-cols-12 gap-8 items-center"
+      >
+        <!-- Hero Left Column: Typography & Introduction -->
+        <div class="lg:col-span-6 z-10 space-y-6 pt-4">
+          <!-- Handwritten Greeting -->
+          <p
+            class="font-script text-3xl md:text-4xl text-[#9b7b4f] -mb-3 tracking-wide"
+          >
+            Hello, I'm
+          </p>
+          <!-- Big Display Name -->
+          <h1
+            class="font-serif text-7xl sm:text-8xl xl:text-[6.8rem] leading-[0.88] tracking-tight text-[#222620] uppercase font-normal"
+          >
+            REY<br /><span class="relative inline-block font-normal"
+              >WATERSON</span
+            >
+          </h1>
+          <!-- Subtitle & Bio -->
+          <div class="pt-2 space-y-4 max-w-md">
+            <h2
+              class="text-xs uppercase tracking-[0.26em] text-[#787f73] font-semibold"
+            >
+              FULL-STACK &amp; AI ENGINEER
+            </h2>
+            <p
+              class="text-sm md:text-base leading-relaxed text-[#5a6056] font-normal font-sans"
+            >
+              Architecting intelligent systems, robust full-stack applications,
+              and scalable AI solutions that transform complex data and models
+              into seamless user experiences.
+            </p>
+          </div>
+          <!-- Call to Action Button -->
+          <div class="pt-3">
+            <a
+              class="btn-interactive inline-flex items-center space-x-3 bg-[#4c5847] hover:bg-[#3d4738] text-[#f6f3eb] px-7 py-3 rounded-full text-xs font-semibold uppercase tracking-[0.18em] shadow-md transition-all duration-300 hover:shadow-lg active:scale-95"
+              href="#work"
+              ><span>EXPLORE WORK</span
+              ><span
+                class="btn-arrow text-base leading-none transition-transform duration-300 group-hover:translate-x-1"
+                >→</span
+              ></a
+            >
+          </div>
+        </div>
+        <!-- Hero Right Column: Arched Portrait & Botanical Frame -->
+        <div class="lg:col-span-6 relative flex justify-center items-center">
+          <!-- Arched Photo Container -->
+          <div class="relative w-full max-w-[390px] h-[510px]">
+            <!-- Outer Decorative Arched Outline -->
+            <div
+              class="absolute -inset-3.5 arch-frame border border-[#cebfa8]/80 pointer-events-none rounded-b-2xl"
+            ></div>
+            <!-- Main Arched Image Frame -->
+            <div
+              class="w-full h-full arch-frame rounded-b-2xl overflow-hidden bg-[#e5dfd2] subtle-shadow relative"
+              style="
+                box-shadow:
+                  rgba(50, 58, 45, 0.22) 0px 24px 48px -12px,
+                  rgba(84, 96, 77, 0.16) 0px 10px 24px -8px,
+                  rgba(0, 0, 0, 0.04) 0px 0px 20px;
+              "
+            >
+              <img
+                alt="Rey Waterson - Full-Stack &amp; AI Engineer"
+                class="w-full h-full object-cover object-top"
+                src="portrait.jpeg"
+              />
+            </div>
+            <!-- Circular Floating Badge -->
+            <div
+              class="absolute -top-4 -right-4 w-28 h-28 rounded-full border border-[#cebfa8] bg-[#f6f3ec]/90 backdrop-blur-sm p-2 flex flex-col items-center justify-center text-center shadow-sm"
+            >
+              <p
+                class="text-[8px] font-semibold tracking-[0.14em] uppercase text-[#696f63] leading-tight px-1"
+              >
+                BUILDING<br />SCALABLE AI &amp;<br />FULL-STACK<br />SYSTEMS
+              </p>
+              <div class="text-[#b99b6f] mt-1.5">
+                <svg class="w-2.5 h-2.5 fill-current" viewbox="0 0 24 24">
+                  <path
+                    d="M12 0L14.5 9.5L24 12L14.5 14.5L12 24L9.5 14.5L0 12L9.5 9.5L12 0Z"
+                  ></path>
+                </svg>
+              </div>
+            </div>
+          </div>
+          <!-- Subtle Right Botanical Leaf Accent -->
+          <div
+            class="absolute -right-8 top-16 hidden xl:block pointer-events-none opacity-40"
+          >
+            <svg
+              class="stroke-[#424d3d] stroke-[1.2]"
+              fill="none"
+              height="260"
+              viewbox="0 0 100 300"
+              width="90"
+            >
+              <path d="M30,300 C40,200 60,100 80,0"></path>
+              <path
+                d="M45,220 C70,210 85,185 80,170 C70,170 50,195 45,220 Z"
+                fill="#586552"
+                fill-opacity="0.3"
+              ></path>
+              <path
+                d="M55,160 C80,140 90,120 85,110 C75,110 60,135 55,160 Z"
+                fill="#586552"
+                fill-opacity="0.3"
+              ></path>
+              <path
+                d="M68,90 C90,70 95,50 88,40 C80,45 70,70 68,90 Z"
+                fill="#586552"
+                fill-opacity="0.3"
+              ></path>
+            </svg>
+          </div>
+        </div>
+      </section>
+      <!-- END: HeroSection -->
+      <!-- BEGIN: StatsBanner -->
+      <section
+        class="mx-8 md:mx-16 bg-[#53604f] rounded-lg text-[#ece6da] py-5 px-6 md:px-10"
+      >
+        <div
+          class="grid grid-cols-2 md:grid-cols-4 gap-6 items-center divide-y md:divide-y-0 md:divide-x divide-[#677562]"
+        >
+          <!-- Stat Item 1 -->
+          <div class="flex items-center space-x-3.5 pt-2 md:pt-0">
+            <div class="text-[#d8c39e] shrink-0">
+              <svg class="w-5 h-5 fill-current" viewbox="0 0 24 24">
+                <path
+                  d="M12 0L14 9L23 12L14 15L12 24L10 15L1 12L10 9L12 0Z"
+                ></path>
+              </svg>
+            </div>
+            <div>
+              <div class="font-serif text-2xl font-light leading-none">6+</div>
+              <div
+                class="text-[9px] tracking-[0.18em] uppercase text-[#cfd7cb] mt-1 font-medium"
+              >
+                YEARS EXPERIENCE
+              </div>
+            </div>
+          </div>
+          <!-- Stat Item 2 -->
+          <div class="flex items-center space-x-3.5 pt-2 md:pt-0 md:pl-6">
+            <div class="text-[#d8c39e] shrink-0">
+              <svg
+                class="w-5 h-5 stroke-current fill-none stroke-[1.5]"
+                viewbox="0 0 24 24"
+              >
+                <polygon points="12 2 2 7 12 12 22 7 12 2"></polygon>
+                <polyline points="2 17 12 22 22 17"></polyline>
+                <polyline points="2 12 12 17 22 12"></polyline>
+              </svg>
+            </div>
+            <div>
+              <div class="font-serif text-2xl font-light leading-none">5+</div>
+              <div
+                class="text-[9px] tracking-[0.18em] uppercase text-[#cfd7cb] mt-1 font-medium"
+              >
+                FEATURED PROJECTS SHOWCASED
+              </div>
+            </div>
+          </div>
+          <!-- Stat Item 3 -->
+          <div class="flex items-center space-x-3.5 pt-2 md:pt-0 md:pl-6">
+            <div class="text-[#d8c39e] shrink-0">
+              <svg
+                class="w-5 h-5 stroke-current fill-none stroke-[1.5]"
+                viewbox="0 0 24 24"
+              >
+                <circle cx="12" cy="12" r="10"></circle>
+                <path d="M8 14s1.5 2 4 2 4-2 4-2"></path>
+                <line x1="9" x2="9.01" y1="9" y2="9"></line>
+                <line x1="15" x2="15.01" y1="9" y2="9"></line>
+              </svg>
+            </div>
+            <div>
+              <div class="font-serif text-2xl font-light leading-none">
+                99.9%
+              </div>
+              <div
+                class="text-[9px] tracking-[0.18em] uppercase text-[#cfd7cb] mt-1 font-medium"
+              >
+                SYSTEM UPTIME &amp; RELIABILITY
+              </div>
+            </div>
+          </div>
+          <!-- Stat Item 4 -->
+          <div class="flex items-center space-x-3.5 pt-2 md:pt-0 md:pl-6">
+            <div class="text-[#d8c39e] shrink-0">
+              <svg
+                class="w-5 h-5 stroke-current fill-none stroke-[1.5]"
+                viewbox="0 0 24 24"
+              >
+                <rect height="14" rx="2" ry="2" width="20" x="2" y="7"></rect>
+                <path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path>
+              </svg>
+            </div>
+            <div>
+              <div class="font-serif text-2xl font-light leading-none">12+</div>
+              <div
+                class="text-[9px] tracking-[0.18em] uppercase text-[#cfd7cb] mt-1 font-medium"
+              >
+                AI &amp; ML MODELS DEPLOYED
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <!-- END: StatsBanner -->
+      <!-- BEGIN: SelectedProjects -->
+      <section class="px-8 md:px-16 pt-16 pb-12" id="work">
+        <!-- Section Header -->
+        <div
+          class="flex flex-col sm:flex-row sm:items-end justify-between mb-8 pb-3 border-b border-[#e5dfd2]"
+        >
+          <div>
+            <span
+              class="text-[10px] tracking-[0.26em] uppercase text-[#7f867a] font-semibold block mb-1"
+            >
+              SELECTED
+            </span>
+            <h2
+              class="font-serif text-3xl md:text-4xl text-[#242921] flex items-center space-x-2"
+            >
+              <span>PROJECTS</span>
+              <span class="text-[#bfa175] text-xl font-normal">✦</span>
+            </h2>
+          </div>
+          <div class="flex items-center space-x-4 mt-3 sm:mt-0">
+            <div class="flex items-center space-x-2">
+              <button
+                aria-label="Previous project"
+                class="w-8 h-8 rounded-full border border-[#cbbeab] bg-[#eee9df]/60 hover:bg-[#53604f] hover:text-[#f6f3eb] text-[#556050] flex items-center justify-center transition-all duration-300 active:scale-90 cursor-pointer shadow-sm hover:shadow"
+                onclick="smoothScrollSlider(-1)"
+                type="button"
+              >
+                <svg
+                  class="w-4 h-4 stroke-current fill-none stroke-[1.8]"
+                  viewbox="0 0 24 24"
+                >
+                  <polyline points="15 18 9 12 15 6"></polyline>
+                </svg>
+              </button>
+              <button
+                aria-label="Next project"
+                class="w-8 h-8 rounded-full border border-[#cbbeab] bg-[#eee9df]/60 hover:bg-[#53604f] hover:text-[#f6f3eb] text-[#556050] flex items-center justify-center transition-all duration-300 active:scale-90 cursor-pointer shadow-sm hover:shadow"
+                onclick="smoothScrollSlider(1)"
+                type="button"
+              >
+                <svg
+                  class="w-4 h-4 stroke-current fill-none stroke-[1.8]"
+                  viewbox="0 0 24 24"
+                >
+                  <polyline points="9 18 15 12 9 6"></polyline>
+                </svg>
+              </button>
+            </div>
+            <a
+              class="btn-interactive text-[11px] font-semibold uppercase tracking-[0.2em] text-[#555e51] hover:text-black transition-colors flex items-center space-x-1.5 group cursor-pointer"
+              href="#work"
+            >
+              <span>VIEW ALL WORK</span
+              ><span
+                class="btn-arrow transition-transform duration-300 group-hover:translate-x-1"
+                >→</span
+              >
+            </a>
+          </div>
+        </div>
+        <!-- Project Cards Grid -->
+        <div
+          class="flex overflow-x-auto gap-6 pb-6 pt-2 -mx-8 px-8 md:-mx-16 md:px-16"
+          id="projects-slider"
+          style="
+            scrollbar-width: thin;
+            scrollbar-color: rgb(206, 191, 168) transparent;
+          "
+        >
+          <!-- Project 1: Aurelia Skincare -->
+          <article
+            aria-label="View Synapse AI Workflows Case Study"
+            class="project-card w-[360px] md:w-[400px] shrink-0 bg-[#ece7db] rounded-lg overflow-hidden group flex flex-col justify-between border border-[#e1d9cb] relative"
+            onclick="openProjectModal('synapse')"
+            role="button"
+            style="opacity: 1; transform: scale(1)"
+            tabindex="0"
+          >
+            <div class="p-6">
+              <div class="flex items-center justify-between">
+                <h3
+                  class="font-serif text-xl tracking-wide uppercase text-[#232720] group-hover:text-[#9b7b4f] transition-colors"
+                >
+                  SYNAPSE AI WORKFLOWS
+                </h3>
+                <span
+                  class="arrow-badge w-6 h-6 rounded-full border border-[#cebfa8] bg-[#f6f3ec] text-[#4d5747] flex items-center justify-center text-[10px] shrink-0 ml-2"
+                  >↗</span
+                >
+              </div>
+              <p
+                class="text-[9px] tracking-[0.22em] uppercase text-[#787f73] mt-0.5"
+              >
+                LLM AGENT PLATFORM &amp; DISTRIBUTED BACKEND
+              </p>
+              <div
+                class="mt-2 text-[9px] uppercase tracking-wider text-[#9b7b4f] font-medium flex items-center gap-1 opacity-0 group-hover:opacity-100 transition-opacity"
+              >
+                <span>View Case Study</span> <span>✦</span>
+              </div>
+            </div>
+            <div class="px-6 pb-6 pt-2 flex flex-col justify-end">
+              <div
+                class="mockup-container h-44 bg-[#e2dbce] rounded flex items-center justify-center p-3 relative overflow-hidden"
+              >
+                <div
+                  class="mockup-content w-full h-full border border-[#d2c8b8] bg-[#f9f8f5] rounded flex items-center justify-around px-3 py-2 shadow-inner"
+                >
+                  <div
+                    class="w-8 h-16 bg-[#b29774]/70 rounded-sm flex flex-col items-center justify-center"
+                  >
+                    <div class="w-3 h-3 bg-[#44382c] rounded-t-sm"></div>
+                    <div class="w-5 h-8 bg-[#3d3125] mt-1"></div>
+                  </div>
+                  <div
+                    class="w-24 h-20 border border-[#c5bcae] bg-white rounded p-1 shadow-sm"
+                  >
+                    <div class="w-full h-3 bg-[#dfdacd] mb-1"></div>
+                    <div class="w-3/4 h-2 bg-[#ece7db]"></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </article>
+          <!-- Project 2: Verdant Wellness -->
+          <article
+            aria-label="View NeuralOps Cloud Case Study"
+            class="project-card w-[360px] md:w-[400px] shrink-0 bg-[#3e4839] text-[#e8e4da] rounded-lg overflow-hidden group flex flex-col justify-between border border-[#4d5c48] relative"
+            onclick="openProjectModal('neuralops')"
+            role="button"
+            style="opacity: 1; transform: scale(1)"
+            tabindex="0"
+          >
+            <div class="p-6">
+              <div class="flex items-center justify-between">
+                <h3
+                  class="font-serif text-xl tracking-wide uppercase text-[#f2ede4] group-hover:text-[#d8c39e] transition-colors"
+                >
+                  NEURALOPS CLOUD
+                </h3>
+                <span
+                  class="arrow-badge w-6 h-6 rounded-full border border-[#596952] bg-[#2d3629] text-[#d8c39e] flex items-center justify-center text-[10px] shrink-0 ml-2"
+                  >↗</span
+                >
+              </div>
+              <p
+                class="text-[9px] tracking-[0.22em] uppercase text-[#b6c2b1] mt-0.5"
+              >
+                FULL-STACK MLOPS &amp; REAL-TIME ANALYTICS
+              </p>
+              <div
+                class="mt-2 text-[9px] uppercase tracking-wider text-[#d8c39e] font-medium flex items-center gap-1 opacity-0 group-hover:opacity-100 transition-opacity"
+              >
+                <span>View Case Study</span> <span>✦</span>
+              </div>
+            </div>
+            <div class="px-6 pb-6 pt-2 flex flex-col justify-end">
+              <div
+                class="mockup-container h-44 bg-[#353e31] rounded flex items-center justify-center p-3 relative overflow-hidden"
+              >
+                <div class="mockup-content flex space-x-3 items-center">
+                  <div
+                    class="w-16 h-28 bg-[#232a20] rounded-xl border border-[#596952] p-1 shadow-md"
+                  >
+                    <div
+                      class="w-full h-full bg-[#1b2118] rounded-lg p-1.5 flex flex-col justify-between"
+                    >
+                      <div class="w-4 h-1 bg-[#5b6a55] mx-auto rounded"></div>
+                      <div
+                        class="text-[6px] text-center text-[#9ab092] font-serif"
+                      >
+                        VERDANT
+                      </div>
+                      <div class="w-full h-4 bg-[#2b3528] rounded"></div>
+                    </div>
+                  </div>
+                  <div
+                    class="w-16 h-32 bg-[#283124] rounded-xl border border-[#6b7d62] p-1 shadow-xl transform -rotate-3"
+                  >
+                    <div
+                      class="w-full h-full bg-[#1e251b] rounded-lg p-1.5 flex flex-col justify-between"
+                    >
+                      <div class="w-5 h-1 bg-[#6b7d62] mx-auto rounded"></div>
+                      <div class="space-y-1">
+                        <div class="w-full h-8 bg-[#374432] rounded"></div>
+                        <div class="w-3/4 h-2 bg-[#44543f] rounded"></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </article>
+          <!-- Project 3: Northline Studio -->
+          <article
+            aria-label="View Aura Health AI Case Study"
+            class="project-card w-[360px] md:w-[400px] shrink-0 bg-[#ece7db] rounded-lg overflow-hidden group flex flex-col justify-between border border-[#e1d9cb] relative"
+            onclick="openProjectModal('aura')"
+            role="button"
+            style="opacity: 1; transform: scale(1)"
+            tabindex="0"
+          >
+            <div class="p-6">
+              <div class="flex items-center justify-between">
+                <h3
+                  class="font-serif text-xl tracking-wide uppercase text-[#232720] group-hover:text-[#9b7b4f] transition-colors"
+                >
+                  AURA HEALTH AI
+                </h3>
+                <span
+                  class="arrow-badge w-6 h-6 rounded-full border border-[#cebfa8] bg-[#f6f3ec] text-[#4d5747] flex items-center justify-center text-[10px] shrink-0 ml-2"
+                  >↗</span
+                >
+              </div>
+              <p
+                class="text-[9px] tracking-[0.22em] uppercase text-[#787f73] mt-0.5"
+              >
+                INTELLIGENT DIAGNOSTIC API &amp; WEB SYSTEM
+              </p>
+              <div
+                class="mt-2 text-[9px] uppercase tracking-wider text-[#9b7b4f] font-medium flex items-center gap-1 opacity-0 group-hover:opacity-100 transition-opacity"
+              >
+                <span>View Case Study</span> <span>✦</span>
+              </div>
+            </div>
+            <div class="px-6 pb-6 pt-2 flex flex-col justify-end">
+              <div
+                class="mockup-container h-44 bg-[#e2dbce] rounded flex items-center justify-center p-3 relative overflow-hidden"
+              >
+                <div
+                  class="mockup-content w-full h-full border border-[#d2c8b8] bg-[#f9f8f5] rounded flex items-center justify-between px-3 py-2"
+                >
+                  <div
+                    class="w-28 h-20 border border-[#cbc2b4] bg-white rounded p-1 shadow-sm"
+                  >
+                    <div class="w-full h-3 bg-[#e8e4da] mb-1"></div>
+                    <div class="w-1/2 h-2 bg-[#d8d1c4]"></div>
+                  </div>
+                  <div
+                    class="w-12 h-14 border border-[#9b856a] rounded-sm flex flex-col items-center justify-center p-1 bg-[#d8ccbb]"
+                  >
+                    <div class="w-8 h-5 bg-[#524436] rounded-t-sm"></div>
+                    <div class="w-10 h-3 bg-[#3f3429] mt-0.5"></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </article>
+          <!-- Project 4: Solstice Ceramics -->
+          <article
+            aria-label="View Vortex Engine Case Study"
+            class="project-card w-[360px] md:w-[400px] shrink-0 bg-[#3e4839] text-[#e8e4da] rounded-lg overflow-hidden group flex flex-col justify-between border border-[#4d5c48] relative"
+            onclick="openProjectModal('vortex')"
+            role="button"
+            style="opacity: 0.78; transform: scale(0.97)"
+            tabindex="0"
+          >
+            <div class="p-6">
+              <div class="flex items-center justify-between">
+                <h3
+                  class="font-serif text-xl tracking-wide uppercase text-[#f2ede4] group-hover:text-[#d8c39e] transition-colors"
+                >
+                  VORTEX ENGINE
+                </h3>
+                <span
+                  class="arrow-badge w-6 h-6 rounded-full border border-[#596952] bg-[#2d3629] text-[#d8c39e] flex items-center justify-center text-[10px] shrink-0 ml-2"
+                  >↗</span
+                >
+              </div>
+              <p
+                class="text-[9px] tracking-[0.22em] uppercase text-[#b6c2b1] mt-0.5"
+              >
+                HIGH-THROUGHPUT EVENT STREAMING &amp; NEXT.JS DASHBOARD
+              </p>
+              <div
+                class="mt-2 text-[9px] uppercase tracking-wider text-[#d8c39e] font-medium flex items-center gap-1 opacity-0 group-hover:opacity-100 transition-opacity"
+              >
+                <span>View Case Study</span> <span>✦</span>
+              </div>
+            </div>
+            <div class="px-6 pb-6 pt-2 flex flex-col justify-end">
+              <div
+                class="mockup-container h-44 bg-[#353e31] rounded flex items-center justify-center p-3 relative overflow-hidden"
+              >
+                <div
+                  class="mockup-content w-full h-full border border-[#596952] bg-[#232a20] rounded flex items-center justify-around px-4 py-2 shadow-inner"
+                >
+                  <div
+                    class="w-16 h-24 bg-[#524436] rounded-t-full rounded-b-md border border-[#9b856a] flex flex-col items-center justify-center shadow-md"
+                  >
+                    <div
+                      class="w-8 h-8 rounded-full border border-[#cebfa8]/80 flex items-center justify-center text-[7px] text-[#f4f1ea] font-serif"
+                    >
+                      SC
+                    </div>
+                  </div>
+                  <div
+                    class="w-24 h-24 border border-[#6b7d62] bg-[#1e251b] rounded p-2 flex flex-col justify-between"
+                  >
+                    <div class="w-full h-2 bg-[#44543f] rounded"></div>
+                    <div
+                      class="w-full h-10 border border-[#596952] rounded flex items-center justify-center"
+                    >
+                      <div
+                        class="w-10 h-10 rounded-full border border-[#9b856a]/60 flex items-center justify-center text-[6px] text-[#b6c2b1] tracking-widest uppercase"
+                      >
+                        POTTERY
+                      </div>
+                    </div>
+                    <div class="w-2/3 h-1.5 bg-[#374432] rounded"></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </article>
+          <!-- Project 5: Atelier Lumière -->
+          <article
+            aria-label="View Cognitive Search Case Study"
+            class="project-card w-[360px] md:w-[400px] shrink-0 bg-[#ece7db] rounded-lg overflow-hidden group flex flex-col justify-between border border-[#e1d9cb] relative"
+            onclick="openProjectModal('cognitive')"
+            role="button"
+            style="opacity: 0.78; transform: scale(0.97)"
+            tabindex="0"
+          >
+            <div class="p-6">
+              <div class="flex items-center justify-between">
+                <h3
+                  class="font-serif text-xl tracking-wide uppercase text-[#232720] group-hover:text-[#9b7b4f] transition-colors"
+                >
+                  COGNITIVE SEARCH
+                </h3>
+                <span
+                  class="arrow-badge w-6 h-6 rounded-full border border-[#cebfa8] bg-[#f6f3ec] text-[#4d5747] flex items-center justify-center text-[10px] shrink-0 ml-2"
+                  >↗</span
+                >
+              </div>
+              <p
+                class="text-[9px] tracking-[0.22em] uppercase text-[#787f73] mt-0.5"
+              >
+                RAG VECTOR SEARCH &amp; REACT FRONTEND
+              </p>
+              <div
+                class="mt-2 text-[9px] uppercase tracking-wider text-[#9b7b4f] font-medium flex items-center gap-1 opacity-0 group-hover:opacity-100 transition-opacity"
+              >
+                <span>View Case Study</span> <span>✦</span>
+              </div>
+            </div>
+            <div class="px-6 pb-6 pt-2 flex flex-col justify-end">
+              <div
+                class="mockup-container h-44 bg-[#e2dbce] rounded flex items-center justify-center p-3 relative overflow-hidden"
+              >
+                <div
+                  class="mockup-content w-full h-full border border-[#d2c8b8] bg-[#f9f8f5] rounded flex items-center justify-between px-3 py-2 shadow-inner"
+                >
+                  <div
+                    class="w-28 h-24 border border-[#cbc2b4] bg-white rounded p-1.5 shadow-sm flex flex-col justify-between"
+                  >
+                    <div
+                      class="flex items-center justify-between border-b border-[#eee9df] pb-1"
+                    >
+                      <div class="w-12 h-1.5 bg-[#524436] rounded"></div>
+                      <div class="w-3 h-1 bg-[#b29774] rounded"></div>
+                    </div>
+                    <div class="flex space-x-1.5">
+                      <div
+                        class="w-12 h-12 bg-[#ede7dc] rounded flex items-center justify-center"
+                      >
+                        <div
+                          class="w-6 h-8 bg-[#ded8ce] rounded-t-full border border-[#beb3a3]"
+                        ></div>
+                      </div>
+                      <div class="w-10 flex flex-col justify-center space-y-1">
+                        <div class="w-full h-1.5 bg-[#dfdacd]"></div>
+                        <div class="w-3/4 h-1.5 bg-[#ece7db]"></div>
+                      </div>
+                    </div>
+                    <div class="w-full h-2 bg-[#4c5847] rounded-sm"></div>
+                  </div>
+                  <div
+                    class="w-14 h-24 border border-[#cebfa8] rounded-xl bg-[#ede7dc] p-1 flex flex-col justify-between shadow-sm"
+                  >
+                    <div
+                      class="w-4 h-1 bg-[#968972] mx-auto rounded-full"
+                    ></div>
+                    <div
+                      class="w-full h-12 bg-white rounded border border-[#dfdacd] p-0.5 flex flex-col justify-center items-center"
+                    >
+                      <div class="w-5 h-7 bg-[#b29774]/50 rounded-t-lg"></div>
+                    </div>
+                    <div class="w-full h-2 bg-[#3d3125] rounded"></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </article>
+        </div>
+      </section>
+      <!-- END: SelectedProjects -->
+      <!-- BEGIN: AboutAndToolsSplit -->
+      <section class="px-8 md:px-16 py-12 border-t border-[#e8e3d8]" id="about">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+          <!-- Left: Tools & Technologies -->
+          <!-- Center: About Me Narrative -->
+          <div
+            class="pl-0 lg:pl-4 border-t lg:border-t-0 pt-6 lg:pt-0 lg:col-span-8"
+          >
+            <div class="flex items-center space-x-2 mb-4">
+              <h3
+                class="text-xs uppercase tracking-[0.24em] font-semibold text-[#2c3328]"
+              >
+                ABOUT ME
+              </h3>
+              <span class="text-[#bfa175] text-sm">✦</span>
+            </div>
+            <p
+              class="text-xs md:text-sm text-[#575f52] leading-relaxed font-sans pr-4 mb-6"
+            >
+              I'm a full-stack engineer and AI specialist dedicated to
+              architecting high-performance distributed systems, intuitive
+              frontend interfaces, and production-ready machine learning
+              solutions. Bridging deep learning breakthroughs with modern cloud
+              architectures to deliver scalable, resilient digital products.
+            </p>
+            <!-- Handwritten Signature -->
+            <div class="pt-1">
+              <span
+                class="font-script text-3xl md:text-4xl text-[#9b7b4f] block"
+                >Rey Waterson</span
+              >
+            </div>
+          </div>
+          <!-- Right: Arched Botanical Vase Graphic -->
+          <div class="lg:col-span-3 flex justify-center">
+            <div
+              class="w-48 h-64 arch-frame rounded-b-lg border border-[#e0d7c7] bg-[#ede7dc] relative overflow-hidden flex flex-col items-center justify-end p-4 shadow-sm"
+              style="
+                box-shadow:
+                  rgba(50, 58, 45, 0.18) 0px 20px 40px -12px,
+                  rgba(84, 96, 77, 0.12) 0px 8px 20px -6px,
+                  rgba(0, 0, 0, 0.03) 0px 0px 18px;
+              "
+            >
+              <!-- Wall Shadow and Sunlight Effect -->
+              <div
+                class="absolute inset-0 bg-gradient-to-tr from-[#ded5c5] to-[#f7f4ee] opacity-80"
+              ></div>
+              <!-- Minimalist Vase and Foliage Graphic -->
+              <div class="relative z-10 flex flex-col items-center">
+                <!-- Dried Stem Graphics -->
+                <div class="w-16 h-28 relative mb-1">
+                  <div
+                    class="absolute left-1/2 bottom-0 w-[1.5px] h-24 bg-[#7d705c] -translate-x-1/2"
+                  ></div>
+                  <div
+                    class="absolute left-4 top-4 w-3 h-2 bg-[#968972] rounded-full rotate-45"
+                  ></div>
+                  <div
+                    class="absolute right-4 top-8 w-3 h-2 bg-[#968972] rounded-full -rotate-45"
+                  ></div>
+                  <div
+                    class="absolute left-3 top-12 w-2.5 h-1.5 bg-[#968972] rounded-full rotate-30"
+                  ></div>
+                  <div
+                    class="absolute right-3 top-16 w-2.5 h-1.5 bg-[#968972] rounded-full -rotate-30"
+                  ></div>
+                </div>
+                <!-- Ceramic Vase -->
+                <div
+                  class="w-12 h-14 bg-[#ded8ce] border border-[#beb3a3] rounded-t-xl rounded-b-md shadow-md flex items-center justify-center"
+                >
+                  <div class="w-4 h-1.5 bg-[#b1a491] rounded-full -mt-12"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <!-- END: AboutAndToolsSplit -->
+      <!-- BEGIN: DesignProcess -->
+      <section
+        class="px-8 md:px-16 py-14 border-t border-[#e8e3d8]"
+        id="process"
+      >
+        <div class="text-center mb-12">
+          <h2
+            class="font-serif text-2xl md:text-3xl tracking-wide uppercase text-[#242920]"
+          >
+            MY ENGINEERING &amp; ARCHITECTURE PROCESS
+          </h2>
+        </div>
+        <!-- 5-Step Process Timeline -->
+        <div class="grid grid-cols-2 md:grid-cols-5 gap-6 relative">
+          <!-- Step 01 -->
+          <div
+            class="process-step-item flex flex-col items-center text-center group"
+          >
+            <div
+              class="text-[10px] tracking-widest text-[#8d9687] font-semibold mb-2"
+            >
+              01
+            </div>
+            <div
+              class="process-icon w-12 h-12 rounded-full border border-[#cbbeab] bg-[#eee9df] flex items-center justify-center text-[#556150] mb-3"
+            >
+              <svg
+                class="w-5 h-5 stroke-current fill-none stroke-[1.6]"
+                viewbox="0 0 24 24"
+              >
+                <circle cx="11" cy="11" r="8"></circle>
+                <line x1="21" x2="16.65" y1="21" y2="16.65"></line>
+              </svg>
+            </div>
+            <h4
+              class="font-serif text-base tracking-wider uppercase text-[#252a21] font-semibold"
+            >
+              DISCOVERY &amp; SPEC
+            </h4>
+            <p
+              class="text-[10px] text-[#636c5e] mt-1.5 leading-snug px-1 max-w-[150px]"
+            >
+              Requirements analysis, architecture roadmap &amp; tech stack
+              selection.
+            </p>
+          </div>
+          <!-- Step 02 -->
+          <div
+            class="process-step-item flex flex-col items-center text-center group"
+          >
+            <div
+              class="text-[10px] tracking-widest text-[#8d9687] font-semibold mb-2"
+            >
+              02
+            </div>
+            <div
+              class="process-icon w-12 h-12 rounded-full border border-[#cbbeab] bg-[#eee9df] flex items-center justify-center text-[#556150] mb-3"
+            >
+              <svg
+                class="w-5 h-5 stroke-current fill-none stroke-[1.6]"
+                viewbox="0 0 24 24"
+              >
+                <polygon points="12 2 2 7 12 12 22 7 12 2"></polygon>
+                <polyline points="2 17 12 22 22 17"></polyline>
+                <polyline points="2 12 12 17 22 12"></polyline>
+              </svg>
+            </div>
+            <h4
+              class="font-serif text-base tracking-wider uppercase text-[#252a21] font-semibold"
+            >
+              SYSTEM ARCHITECTURE
+            </h4>
+            <p
+              class="text-[10px] text-[#636c5e] mt-1.5 leading-snug px-1 max-w-[150px]"
+            >
+              Data modeling, API schema design &amp; infrastructure strategy.
+            </p>
+          </div>
+          <!-- Step 03 -->
+          <div
+            class="process-step-item flex flex-col items-center text-center group"
+          >
+            <div
+              class="text-[10px] tracking-widest text-[#8d9687] font-semibold mb-2"
+            >
+              03
+            </div>
+            <div
+              class="process-icon w-12 h-12 rounded-full border border-[#cbbeab] bg-[#eee9df] flex items-center justify-center text-[#556150] mb-3"
+            >
+              <svg
+                class="w-5 h-5 stroke-current fill-none stroke-[1.6]"
+                viewbox="0 0 24 24"
+              >
+                <polyline points="16 18 22 12 16 6"></polyline>
+                <polyline points="8 6 2 12 8 18"></polyline>
+              </svg>
+            </div>
+            <h4
+              class="font-serif text-base tracking-wider uppercase text-[#252a21] font-semibold"
+            >
+              FULL-STACK BUILD
+            </h4>
+            <p
+              class="text-[10px] text-[#636c5e] mt-1.5 leading-snug px-1 max-w-[150px]"
+            >
+              Scalable microservices, clean APIs &amp; responsive modern UI.
+            </p>
+          </div>
+          <!-- Step 04 -->
+          <div
+            class="process-step-item flex flex-col items-center text-center group"
+          >
+            <div
+              class="text-[10px] tracking-widest text-[#8d9687] font-semibold mb-2"
+            >
+              04
+            </div>
+            <div
+              class="process-icon w-12 h-12 rounded-full border border-[#cbbeab] bg-[#eee9df] flex items-center justify-center text-[#556150] mb-3"
+            >
+              <svg
+                class="w-5 h-5 stroke-current fill-none stroke-[1.6]"
+                viewbox="0 0 24 24"
+              >
+                <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+                <polyline points="22 4 12 14.01 9 11.01"></polyline>
+              </svg>
+            </div>
+            <h4
+              class="font-serif text-base tracking-wider uppercase text-[#252a21] font-semibold"
+            >
+              AI / ML INTEGRATION
+            </h4>
+            <p
+              class="text-[10px] text-[#636c5e] mt-1.5 leading-snug px-1 max-w-[150px]"
+            >
+              Model tuning, prompt orchestration &amp; pipeline optimization.
+            </p>
+          </div>
+          <!-- Step 05 -->
+          <div
+            class="process-step-item col-span-2 md:col-span-1 flex flex-col items-center text-center group"
+          >
+            <div
+              class="text-[10px] tracking-widest text-[#8d9687] font-semibold mb-2"
+            >
+              05
+            </div>
+            <div
+              class="process-icon w-12 h-12 rounded-full border border-[#cbbeab] bg-[#eee9df] flex items-center justify-center text-[#556150] mb-3"
+            >
+              <svg
+                class="w-5 h-5 stroke-current fill-none stroke-[1.6]"
+                viewbox="0 0 24 24"
+              >
+                <path
+                  d="M4.5 16.5c-1.5 1.26-2 5-2 5s3.74-.5 5-2c.71-.84.7-2.13-.09-2.91a2.18 2.18 0 0 0-2.91-.09z"
+                ></path>
+                <path
+                  d="M12 15l-3-3a22 22 0 0 1 2-3.95A12.88 12.88 0 0 1 22 2c0 2.72-.78 7.5-6 11a22.35 22.35 0 0 1-4 2z"
+                ></path>
+              </svg>
+            </div>
+            <h4
+              class="font-serif text-base tracking-wider uppercase text-[#252a21] font-semibold"
+            >
+              CI/CD &amp; DEPLOYMENT
+            </h4>
+            <p
+              class="text-[10px] text-[#636c5e] mt-1.5 leading-snug px-1 max-w-[150px]"
+            >
+              Automated testing, containerization, performance &amp; cloud
+              monitoring.
+            </p>
+          </div>
+        </div>
+      </section>
+      <!-- END: DesignProcess -->
+      <!-- BEGIN: TestimonialAndCtaBanner -->
+      <section
+        class="bg-[#53604f] text-[#efebe2] py-16 px-8 md:px-16"
+        id="expertise"
+      >
+        <div class="max-w-[1280px] mx-auto text-center">
+          <span
+            class="text-[10px] tracking-[0.26em] uppercase text-[#cfd7cb] font-semibold block mb-2"
+            >EXPERTISE &amp; STACK</span
+          >
+          <h2
+            class="font-serif text-3xl md:text-4xl text-[#f4f1ea] flex items-center justify-center space-x-2 tracking-wide uppercase mb-4"
+          >
+            <span>TOOLS &amp; TECHNOLOGIES</span>
+            <span class="text-[#d8c39e] text-xl font-normal">✦</span>
+          </h2>
+          <p
+            class="text-xs md:text-sm text-[#cbd5c7] max-w-xl mx-auto leading-relaxed mb-12 font-sans"
+          >
+            A versatile suite of industry-standard full-stack frameworks, AI
+            runtimes, distributed cloud services, and production infrastructure.
+          </p>
+          <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 max-w-4xl mx-auto">
+            <!-- Item 1 -->
+            <div
+              class="border border-[#6b7d62] bg-[#44543f]/50 hover:bg-[#3d4738] rounded p-4 text-left transition-colors duration-200"
+            >
+              <div class="font-serif text-lg text-[#f4f1ea] tracking-wide">
+                Next.js / React
+              </div>
+              <div
+                class="text-[9px] uppercase tracking-[0.18em] text-[#cbd5c7] mt-1"
+              >
+                Frontend Architecture
+              </div>
+            </div>
+            <!-- Item 2 -->
+            <div
+              class="border border-[#6b7d62] bg-[#44543f]/50 hover:bg-[#3d4738] rounded p-4 text-left transition-colors duration-200"
+            >
+              <div class="font-serif text-lg text-[#f4f1ea] tracking-wide">
+                TypeScript
+              </div>
+              <div
+                class="text-[9px] uppercase tracking-[0.18em] text-[#cbd5c7] mt-1"
+              >
+                Type-Safe Logic
+              </div>
+            </div>
+            <!-- Item 3 -->
+            <div
+              class="border border-[#6b7d62] bg-[#44543f]/50 hover:bg-[#3d4738] rounded p-4 text-left transition-colors duration-200"
+            >
+              <div class="font-serif text-lg text-[#f4f1ea] tracking-wide">
+                Python &amp; FastAPI
+              </div>
+              <div
+                class="text-[9px] uppercase tracking-[0.18em] text-[#cbd5c7] mt-1"
+              >
+                AI / ML Backend &amp; Inference
+              </div>
+            </div>
+            <!-- Item 4 -->
+            <div
+              class="border border-[#6b7d62] bg-[#44543f]/50 hover:bg-[#3d4738] rounded p-4 text-left transition-colors duration-200"
+            >
+              <div class="font-serif text-lg text-[#f4f1ea] tracking-wide">
+                PyTorch &amp; LangChain
+              </div>
+              <div
+                class="text-[9px] uppercase tracking-[0.18em] text-[#cbd5c7] mt-1"
+              >
+                LLM Agents &amp; Deep Learning
+              </div>
+            </div>
+            <!-- Item 5 -->
+            <div
+              class="border border-[#6b7d62] bg-[#44543f]/50 hover:bg-[#3d4738] rounded p-4 text-left transition-colors duration-200"
+            >
+              <div class="font-serif text-lg text-[#f4f1ea] tracking-wide">
+                Node.js &amp; Go
+              </div>
+              <div
+                class="text-[9px] uppercase tracking-[0.18em] text-[#cbd5c7] mt-1"
+              >
+                Distributed Backend &amp; APIs
+              </div>
+            </div>
+            <!-- Item 6 -->
+            <div
+              class="border border-[#6b7d62] bg-[#44543f]/50 hover:bg-[#3d4738] rounded p-4 text-left transition-colors duration-200"
+            >
+              <div class="font-serif text-lg text-[#f4f1ea] tracking-wide">
+                PostgreSQL &amp; Vector DBs
+              </div>
+              <div
+                class="text-[9px] uppercase tracking-[0.18em] text-[#cbd5c7] mt-1"
+              >
+                pgvector, Pinecone &amp; Redis
+              </div>
+            </div>
+            <!-- Item 7 -->
+            <div
+              class="border border-[#6b7d62] bg-[#44543f]/50 hover:bg-[#3d4738] rounded p-4 text-left transition-colors duration-200"
+            >
+              <div class="font-serif text-lg text-[#f4f1ea] tracking-wide">
+                Docker &amp; Kubernetes
+              </div>
+              <div
+                class="text-[9px] uppercase tracking-[0.18em] text-[#cbd5c7] mt-1"
+              >
+                Containerization &amp; MLOps
+              </div>
+            </div>
+            <!-- Item 8 -->
+            <div
+              class="border border-[#6b7d62] bg-[#44543f]/50 hover:bg-[#3d4738] rounded p-4 text-left transition-colors duration-200"
+            >
+              <div class="font-serif text-lg text-[#f4f1ea] tracking-wide">
+                AWS &amp; Cloud Infra
+              </div>
+              <div
+                class="text-[9px] uppercase tracking-[0.18em] text-[#cbd5c7] mt-1"
+              >
+                Serverless &amp; CI/CD Pipelines
+              </div>
+            </div>
+          </div>
+          <div
+            class="mt-12 pt-8 border-t border-[#6b7d62]/60 max-w-2xl mx-auto text-center"
+          >
+            <p
+              class="font-serif italic text-base md:text-lg text-[#ece6da] leading-relaxed mb-3"
+            >
+              “Rey is an exceptional AI and full-stack engineer who transformed
+              our complex data pipeline and model infrastructure into a
+              high-speed, intuitive web application. Delivered ahead of schedule
+              with unmatched precision.”
+            </p>
+            <p
+              class="text-[10px] uppercase tracking-[0.2em] text-[#cbd5c7] font-semibold"
+            >
+              — Marcus Vance, CTO at Synapse Labs
+            </p>
+          </div>
+        </div>
+      </section>
+      <!-- END: TestimonialAndCtaBanner -->
+      <!-- BEGIN: MainFooter -->
+      <footer class="px-8 md:px-16 pt-10 pb-6 bg-[#f6f3eb] text-[#4d5347]">
+        <!-- Top Info Row -->
+        <div
+          class="flex flex-col md:flex-row justify-between items-start md:items-center gap-6 pb-8 border-b border-[#e2dcce]"
+        >
+          <!-- Left: Logo & Tagline -->
+          <div class="flex items-center space-x-6">
+            <a
+              class="font-serif text-4xl text-[#9b7b4f] tracking-tight"
+              href="#"
+              >R</a
+            >
+            <p
+              class="text-[9px] uppercase tracking-[0.2em] font-semibold text-[#666e60] leading-snug max-w-[200px]"
+            >
+              ARCHITECTING SCALABLE FULL-STACK &amp; AI SYSTEMS.
+            </p>
+          </div>
+          <!-- Center: Contact & Location -->
+          <div class="space-y-1.5 text-xs text-[#5a6254]">
+            <div class="flex items-center space-x-2">
+              <svg
+                class="w-3.5 h-3.5 stroke-current fill-none stroke-[1.6]"
+                viewbox="0 0 24 24"
+              >
+                <rect height="16" rx="2" width="20" x="2" y="4"></rect>
+                <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"></path>
+              </svg>
+              <a
+                class="hover:text-black transition-colors"
+                href="mailto:hello@marialune.com"
+                >reywaterson@gmail.com</a
+              >
+            </div>
+            <div class="flex items-center space-x-2">
+              <svg
+                class="w-3.5 h-3.5 stroke-current fill-none stroke-[1.6]"
+                viewbox="0 0 24 24"
+              >
+                <path
+                  d="M12 2a8 8 0 0 0-8 8c0 5.25 8 12 8 12s8-6.75 8-12a8 8 0 0 0-8-8z"
+                ></path>
+                <circle cx="12" cy="10" r="3"></circle>
+              </svg>
+              <span>Jakarta, Indonesia</span>
+            </div>
+          </div>
+          <!-- Right: Social Circle Icons -->
+          <div class="flex items-center space-x-2.5">
+            <!-- LinkedIn -->
+            <a
+              aria-label="LinkedIn"
+              class="w-7 h-7 rounded-full border border-[#cbc2b3] flex items-center justify-center text-[#556050] hover:bg-[#556050] hover:text-white transition-colors"
+              href="#"
+            >
+              <span class="text-[10px] font-bold">in</span>
+            </a>
+            <!-- Instagram -->
+            <a
+              aria-label="Instagram"
+              class="w-7 h-7 rounded-full border border-[#cbc2b3] flex items-center justify-center text-[#556050] hover:bg-[#556050] hover:text-white transition-colors"
+              href="#"
+            >
+              <svg
+                class="w-3.5 h-3.5 stroke-current fill-none stroke-[1.8]"
+                viewbox="0 0 24 24"
+              >
+                <rect height="20" rx="5" ry="5" width="20" x="2" y="2"></rect>
+                <path
+                  d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"
+                ></path>
+                <line x1="17.5" x2="17.51" y1="6.5" y2="6.5"></line>
+              </svg>
+            </a>
+            <!-- Pinterest -->
+            <a
+              aria-label="Pinterest"
+              class="w-7 h-7 rounded-full border border-[#cbc2b3] flex items-center justify-center text-[#556050] hover:bg-[#556050] hover:text-white transition-colors"
+              href="#"
+            >
+              <span class="font-serif italic font-bold text-xs">P</span>
+            </a>
+            <!-- Behance / Dribbble -->
+            <a
+              aria-label="Portfolio"
+              class="w-7 h-7 rounded-full border border-[#cbc2b3] flex items-center justify-center text-[#556050] hover:bg-[#556050] hover:text-white transition-colors"
+              href="#"
+            >
+              <svg
+                class="w-3.5 h-3.5 stroke-current fill-none stroke-[1.8]"
+                viewbox="0 0 24 24"
+              >
+                <circle cx="12" cy="12" r="10"></circle>
+                <path d="M19.13 5.09C15.22 9.14 10 10.44 2.25 10.94"></path>
+                <path d="M21.75 12.84c-6.62-1.41-12.14 1-16.38 6.32"></path>
+                <path d="M8.5 2.5c2.5 5 4.5 10 5.5 19"></path>
+              </svg>
+            </a>
+          </div>
+        </div>
+        <!-- Bottom Legal Row -->
+        <div
+          class="pt-6 flex flex-col sm:flex-row justify-between items-center text-[10px] uppercase tracking-[0.16em] text-[#7d8677] space-y-2 sm:space-y-0"
+        >
+          <div>© 2026 REY WATERSON. ALL RIGHTS RESERVED.</div>
+          <div class="flex items-center space-x-6">
+            <a class="hover:text-black transition-colors" href="#"
+              >PRIVACY POLICY</a
+            >
+            <a class="hover:text-black transition-colors" href="#"
+              >TERMS &amp; CONDITIONS</a
+            >
+          </div>
+        </div>
+      </footer>
+      <!-- END: MainFooter -->
+    </div>
+    <!-- BEGIN: Interactive Project Detail Modal -->
+    <div
+      aria-labelledby="modal-title"
+      aria-modal="true"
+      class="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6 md:p-8 modal-hidden pointer-events-none"
+      id="project-modal"
+      role="dialog"
+    >
+      <!-- Backdrop Blur Overlay -->
+      <div
+        class="modal-backdrop fixed inset-0 bg-[#1e231c]/60 backdrop-blur-md transition-opacity duration-300"
+        onclick="closeProjectModal()"
+      ></div>
+      <!-- Modal Main Container -->
+      <div
+        class="modal-panel relative bg-[#f7f4ed] w-full max-w-3xl max-h-[90vh] overflow-y-auto rounded-2xl border border-[#d8d0c0] shadow-2xl z-10 flex flex-col"
+        style="scrollbar-width: thin; scrollbar-color: #cbbeab transparent"
+      >
+        <!-- Modal Sticky Top Bar -->
+        <div
+          class="sticky top-0 bg-[#f7f4ed]/95 backdrop-blur-sm z-20 px-6 sm:px-8 py-5 border-b border-[#e5dfd2] flex items-center justify-between"
+        >
+          <div class="flex items-center space-x-2">
+            <span class="text-[#9b7b4f] text-sm">✦</span>
+            <span
+              class="text-[9px] uppercase tracking-[0.24em] font-semibold text-[#6e7568]"
+              id="modal-status"
+              >2024 • PRODUCTION READY</span
+            >
+          </div>
+          <!-- Close Button -->
+          <button
+            aria-label="Close dialog"
+            class="w-8 h-8 rounded-full border border-[#cbbeab] bg-[#eee9df] hover:bg-[#3f4a3c] hover:text-[#f7f4ed] text-[#4d5747] flex items-center justify-center transition-all duration-200 active:scale-95 cursor-pointer"
+            onclick="closeProjectModal()"
+          >
+            <svg
+              class="w-3.5 h-3.5 stroke-current stroke-[2]"
+              fill="none"
+              viewbox="0 0 24 24"
+            >
+              <line x1="18" x2="6" y1="6" y2="18"></line>
+              <line x1="6" x2="18" y1="6" y2="18"></line>
+            </svg>
+          </button>
+        </div>
+        <!-- Modal Content Body -->
+        <div class="p-6 sm:p-8 space-y-8">
+          <!-- Title & Category Header -->
+          <div>
+            <span
+              class="text-[9px] tracking-[0.24em] uppercase text-[#7d8677] font-semibold block mb-1.5"
+              id="modal-category"
+              >LLM AGENT PLATFORM &amp; DISTRIBUTED BACKEND</span
+            >
+            <h2
+              class="font-serif text-3xl sm:text-4xl text-[#222720] tracking-tight uppercase"
+              id="modal-title"
+            >
+              SYNAPSE AI WORKFLOWS
+            </h2>
+          </div>
+          <!-- Mockup Visual Display Container -->
+          <div
+            class="w-full h-48 sm:h-56 bg-[#e7e1d5] rounded-xl border border-[#d6ccbc] flex items-center justify-center p-6 relative overflow-hidden shadow-inner"
+            id="modal-mockup"
+          >
+            <!-- Injected via JS -->
+          </div>
+          <!-- Metrics Row -->
+          <div
+            class="grid grid-cols-3 gap-3 p-4 bg-[#ece6da] rounded-xl border border-[#dfd7c9]"
+            id="modal-metrics"
+          >
+            <!-- Injected via JS -->
+          </div>
+          <!-- Problem & Architecture Breakdown -->
+          <div class="space-y-4">
+            <h4
+              class="text-xs uppercase tracking-[0.22em] font-semibold text-[#30382d] flex items-center gap-1.5"
+            >
+              <span>SYSTEM ARCHITECTURE &amp; INNOVATION</span>
+              <span class="text-[#9b7b4f]">✦</span>
+            </h4>
+            <p
+              class="text-xs sm:text-sm text-[#5a6254] leading-relaxed font-sans"
+              id="modal-description"
+            >
+              Detailed engineering narrative goes here.
+            </p>
+          </div>
+          <!-- Tech Stack Badges -->
+          <div class="space-y-3">
+            <h4
+              class="text-xs uppercase tracking-[0.22em] font-semibold text-[#30382d]"
+            >
+              TECHNOLOGY STACK
+            </h4>
+            <div class="flex flex-wrap gap-2" id="modal-stack">
+              <!-- Stack chips injected via JS -->
+            </div>
+          </div>
+          <!-- Footer Action CTA Links -->
+          <div
+            class="pt-4 border-t border-[#e2dbce] flex flex-wrap items-center justify-between gap-4"
+          >
+            <div class="flex items-center space-x-3">
+              <a
+                class="inline-flex items-center space-x-2 bg-[#3f4a3c] hover:bg-[#323c2f] text-[#f7f4ed] px-5 py-2.5 rounded-full text-[11px] font-semibold uppercase tracking-[0.18em] shadow-sm transition-all duration-200 active:scale-95"
+                href="#"
+                id="modal-live-link"
+                rel="noopener noreferrer"
+                target="_blank"
+              >
+                <span>VIEW LIVE DEMO</span>
+                <span class="text-sm">↗</span>
+              </a>
+              <a
+                class="inline-flex items-center space-x-2 border border-[#cbbeab] bg-[#eee9df] hover:bg-[#dfdacd] text-[#3c4538] px-5 py-2.5 rounded-full text-[11px] font-semibold uppercase tracking-[0.18em] transition-all duration-200"
+                href="#"
+                id="modal-repo-link"
+                rel="noopener noreferrer"
+                target="_blank"
+              >
+                <span>ARCHITECTURE DOCS</span>
+                <span class="text-sm">↗</span>
+              </a>
+            </div>
+            <button
+              class="text-[10px] uppercase tracking-[0.2em] text-[#7a8374] hover:text-[#232720] transition-colors underline underline-offset-4 cursor-pointer"
+              onclick="closeProjectModal()"
+            >
+              DISMISS CASE STUDY
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- END: Interactive Project Detail Modal -->
+    <!-- Smooth Slider & Card Animation Script + Modal Controller -->
+    <script src="script.js"></script>
+  </body>
+</html>
