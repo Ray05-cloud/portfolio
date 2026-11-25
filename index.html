@@ -191,6 +191,21 @@
       .hero-name:hover .letter {
         color: #9b7b4f;
       }
+      /* The name is ~5.1x its own font-size wide. Below 640px a fixed 72px and in
+         the 1024-1279 two-column range a fixed 96px are both wider than the
+         column, so the closing N gets clipped by the page wrapper. Scaling the
+         size to the column keeps the word intact. Double class beats the
+         Tailwind CDN utilities, which are injected after this block. */
+      @media (max-width: 639px) {
+        .hero-title.hero-title {
+          font-size: min(calc((100vw - 66px) / 5.15), 72px);
+        }
+      }
+      @media (min-width: 1024px) and (max-width: 1279px) {
+        .hero-title.hero-title {
+          font-size: calc((100vw - 162px) / 10.3);
+        }
+      }
       @media (prefers-reduced-motion: reduce) {
         .hero-name,
         .hero-name .letter {
@@ -272,7 +287,7 @@
           <!-- Big Display Name -->
           <h1
             aria-label="Rey Waterson"
-            class="font-serif text-7xl sm:text-8xl xl:text-[6.8rem] leading-[0.88] tracking-tight text-[#222620] uppercase font-normal"
+            class="hero-title font-serif text-7xl sm:text-8xl xl:text-[6.8rem] leading-[0.88] tracking-tight text-[#222620] uppercase font-normal"
           >
             <span aria-hidden="true"
               >REY<br /><span class="hero-name"
